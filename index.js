@@ -15,4 +15,5 @@ app.use(myParser.urlencoded({extended : true}));
 
 //Start the server and make it listen for connections on port 8080
  
-app.listen(5000);
+app.listen(process.env.PORT || 5000)
+
