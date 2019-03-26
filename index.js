@@ -1,13 +1,18 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+var express = require("express");
+var myParser = require("body-parser");
+var app = express();
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/rpro', (req, res) => {
-    res.send("Message Recieved");
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.use(myParser.urlencoded({
+  extended: true
+}));
+app.use(myParser.json());
+
+app.use(myParser.urlencoded({extended : true}));
+  app.post("/rpro", function(request, response) {
+  console.log(request.body); //This prints the JSON document received (if it is a JSON document)
+  response.sendStatus(200);
+});
+
+//Start the server and make it listen for connections on port 8080
+ 
+app.listen(5000);
