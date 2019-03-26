@@ -17,8 +17,9 @@ app.post("/rpro", function(request, response) {
 });
 
 app.post("/test", function(request, response) {
-console.log(request.body); //This prints the JSON document received (if it is a JSON document)
-response.sendStatus(200);
+  console.log(request.body); //This prints the JSON document received (if it is a JSON document)
+  response.sendStatus(200);
+  
 });
 
 function postRecievedResponse(request) {
@@ -27,11 +28,11 @@ function postRecievedResponse(request) {
   data.append('from',request.body.to);
   data.append('text',request.body.text);
   data.append('date',new Date().toISOString());
-  axios.post('https://app.rapidpro.io/c/ex/8c9b878c-d395-4685-88ac-501532ed877d/receive', data)
-  //axios.post('http://localhost:5000/test', data)
+  //axios.post('https://app.rapidpro.io/c/ex/8c9b878c-d395-4685-88ac-501532ed877d/receive', data)
+  axios.post('http://localhost:5000/test', data)
   .then((res) => {
-    console.log(`statusCode: ${res.statusCode}`)
-    console.log(res)
+    console.log(`statusCode: ${res.status}`)
+    console.log(res);
   })
   .catch((error) => {
     console.log("error sending recieved post")
