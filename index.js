@@ -36,7 +36,7 @@ function postRecievedResponse(request) {
  
   .then((res) => {
     console.log(`statusCode: ${res.status}`)
-    console.log(res);
+    //console.log(res);
   })
   .catch((error) => {
     console.log("error sending recieved post")
